@@ -1,0 +1,75 @@
+    Linked list merge sort
+
+    public LinkedList merge(LinkedList A, LinkedList B)
+    {
+        //Create a new linked list, fa,fb included for scope.
+        LinkedList sortedList = new LinkedList();
+        Comparable fa,fb;
+        // While A is not empty and B is not empty
+        while(!A.isEmpty() && !B.isEmpty())
+        {
+            fa = (Comparable)A.getFirst();//return first piece of data elements but not delete
+            fb = (Comparable)B.getFirst();
+            //if fa < fb
+            if(fa.compareTo(fb) < 0)
+            {
+                A.removeFirst();//a becomes shorter
+                sortedList.addLast(fa);//O1
+            }
+            else
+            {
+                B.removeFirst();// B becomes shorter
+                sortedList.addLast(fb);// O1
+            }
+        }
+        while(!A.isEmpty())
+        {
+            fa = (Comparable)A.getFirst();
+            sortedList.addLast(fa);// O1
+            A.removeFirst();
+        }
+        while(!B.isEmpty())
+        {
+            fb = (Comparable)B.getFirst();
+            sortedList.addLast(fb); // O1
+            B.removeFirst();
+        }
+        // return S
+        return sortedList;
+    }
+    /**
+     * Need:
+     * Merge sort goes into this class
+     * in
+     */
+    public void mergeSort() throws Exception
+    {
+        // Create queue object q, then enqueue each data object in the
+        // linked list to be sorted, as a single-node linked list.
+        Queue q = new Queue();
+        //for each data object in the linked list to be sorted
+        for(Node cur = this.head.next; cur != this.head ;cur = cur.next)
+        {
+            //create a new linked list object, newList = new LinkedList
+            LinkedList list = new LinkedList();
+            list.addLast(cur.data);
+            q.enqueue(list);
+        }
+        //while there is more than one item in the Queue q
+        while(q.size() > 1)
+        {
+            //dequeue and assign to LinkedList reference sublist1
+            LinkedList sublist1 = (LinkedList)q.dequeue();
+            //dequeue again and assign to another LLR sublist2
+            LinkedList sublist2 = (LinkedList)q.dequeue();
+            //walk through sorted sub1 and sub2 and merge them into a larger sorted list tempList
+            LinkedList tempList = merge(sublist1, sublist2);
+            q.enqueue(tempList);
+        }
+        //dequeue your sorted linked list.
+        LinkedList sortedList = (LinkedList)q.dequeue();
+        //connect the head of the original LL to the head of sorted LL
+        this.head = sortedList.head;
+    }
+
+    Need: merge sort on an array
