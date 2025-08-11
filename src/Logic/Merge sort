@@ -73,3 +73,71 @@
     }
 
     Need: merge sort on an array
+
+    Merge sort on array
+    Assume you have a 4 element array
+    A = [10, -2, 5, 0]
+         low        high
+    index 0,  1, 2, 3
+    mid = (low + high) / 2
+    left subarray from low to mid
+    right subarray from mid to high
+    merge sort on left subarray
+    merge sort on right subarray
+    A = [2,10 | 0,5]
+ sorted left   s.right
+ merge the two sorted arrays
+    A = [0,2,5,10]
+    mergeSort(A, 0, 3) //array, low, high
+
+    	public void mergeSort( Comparable array[] ) {
+    		mergeSort( array, 0, array.length - 1 );
+    	}
+
+    	private void mergeSort( Comparable [] array, int low, int high )
+    	{
+    		if(low < high) {
+    			int mid = (low + high) / 2;
+    			mergeSort(array, low, mid);
+    			mergeSort(array, mid + 1, high);
+    			merge(array, low, mid, high);
+    		}
+    	}
+
+    	private void merge( Comparable [] array, int low, int mid, int high)
+    	{
+    		int leftIndex = low, rightIndex = mid + 1;
+    		int tempIndex = low;
+    		Object temp[] = new Object[array.length];
+
+    		while( leftIndex  <= mid && rightIndex <= high )
+    		{
+    			if( array[leftIndex].compareTo(array[rightIndex]) <= 0 )
+    			{
+    				temp[tempIndex] = array[leftIndex];
+    				leftIndex ++;
+    			}
+    			else
+    			{
+    				temp[tempIndex] = array[rightIndex];
+    				rightIndex ++;
+    			}
+    			tempIndex ++;
+    		}//end of while
+    		while( leftIndex  <= mid )
+    		{
+    			temp[tempIndex] = array[leftIndex];
+    			leftIndex ++;
+    			tempIndex ++;
+    		}
+
+    		while(rightIndex <=high)
+    		{
+    			temp[tempIndex] = array[rightIndex];
+    			rightIndex ++;
+    			tempIndex ++;
+    		}
+
+    		for( tempIndex = low; tempIndex <= high; tempIndex ++)
+    			array[tempIndex] = (Comparable)temp[tempIndex];
+    	}//end of merge method
