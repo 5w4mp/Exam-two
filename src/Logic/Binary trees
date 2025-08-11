@@ -1,0 +1,16 @@
+Binary Trees are:
+    Linked, nonlinear data structures
+    each node contains data and two or more links
+    Left link and right link
+    Binary trees only point two ways
+
+Terminologies in Binary trees:
+    1.) Node // stores data and references to other nodes
+    2.) Root // Topmost node in a tree
+    3.) Children are under parents
+    4.) Internal nodes: nodes with at least one child
+    5.) Leaf node is a node with no child
+    6.) Left subtree: a subset of the tree rooted at a node pointed by a
+        left link.  Does not include root.
+    7.) Right subtree : above but right.
+    8.) A subtree is also a binary tree.
