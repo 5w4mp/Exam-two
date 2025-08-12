@@ -32,6 +32,10 @@ public class Stack
         return false;
     }
 
+    /**
+     * Push a new object onto the stack
+     * @param element data to be pushed onto the stack
+     */
     public void push(Object element)
     {
         Node nn = new Node(element, top);
@@ -39,13 +43,58 @@ public class Stack
         this.size++;
     }
 
+    /**
+     *
+     * @return Object that was popped from stack.
+     * @throws EmptyStackException
+     */
     public Object pop() throws EmptyStackException
     {
         if (isEmpty())
             throw new EmptyStackException();
-        Object temp = top.data;
-        this.top = top.next;
+        Object temp = this.top.data;
+        this.top = this.top.next;
         this.size--;
         return temp;
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

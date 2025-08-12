@@ -57,6 +57,12 @@ public class HashTable
         }
         return (result % this.table.length);
     }
+
+    /**
+     *
+     * @param key
+     * @param data
+     */
     public void put(Object key, Object data)
     {
         boolean update = false;
