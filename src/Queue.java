@@ -23,24 +23,54 @@ public class Queue
         this.size = 0;
     }
 
+    //public void enqueue(Object data)
+    //{
+        //Node nn = new Node(data);
+        //if (this.size == 0){this.head = nn;}
+        //else{this.tail.next = nn;}
+        //this.tail = nn;
+        //this.size++;
+    //}
+
+    //public Object dequeue(Object data) throws Exception
+    //{
+      //  if (this.size == 0)
+        //    throw new Exception("Queue is empty. ");
+        //Object temp = this.head.data;
+        //this.head = this.head.next;
+        //this.size--;
+        //if(size==0)
+            //this.tail = null;
+        //return temp;
+    //}
+
+
+
     public void enqueue(Object data)
     {
         Node nn = new Node(data);
-        if (this.size == 0){this.head = nn;}
-        else{this.tail.next = nn;}
+        if(this.size == 0)
+        {
+            this.head = nn;
+        }
+        else
+            this.tail.next = nn;
         this.tail = nn;
         this.size++;
     }
 
-    public Object dequeue(Object data) throws Exception
+    public Object dequeue() throws Exception
     {
-        if (this.size == 0)
-            throw new Exception("Queue is empty. ");
+        if (size == 0){throw new Exception("Queue is empty. ");}
         Object temp = this.head.data;
         this.head = this.head.next;
         this.size--;
-        if(size==0)
+        if(size == 0)
             this.tail = null;
         return temp;
     }
+
+
+
+
 }

@@ -1,7 +1,22 @@
 /**
  * Must use seperate chaining strategy
+ *
+ * Seperate Chaining's downside is it uses two data structures, a Linked List and an array.
+ * This is extra memory usage.
+ *
+ * Linear Probing directly saves all the records to the one d array without a linked list
+ * The colliding items are placed in the next available cell(It wraps around to the beginning if it
+ * must).
+ * Each table cell inspected is referred to as a probe.
+ * Colliding items lump together causing future collisions to cause a larger sequence of probes
+ *
+ * Load factor(A) is the number of records in a hash table divided by the total size of the array.
+ * the number of probes is 1 / (1-A)
+ *
+ * the more probes, the more searching done
+ *
  */
-import com.sun.jdi.ObjectReference;
+
 
 import java.util.LinkedList;
 public class HashTable
@@ -79,7 +94,6 @@ public class HashTable
             this.table[pos] = new LinkedList<Record>();
         }
         LinkedList<Record> collisionList = this.table[pos];
-
         // If trying to add duplicate keys
         // we need to update value associated with the existing key
         // First delete the existing mapping and insert a new record at that key
@@ -88,7 +102,6 @@ public class HashTable
             collisionList.remove(new Record(key, data));
             update = true;
         }
-
         // Add to the linked list in the appropriate position
         collisionList.add(new Record(key, data));
         if( ! update)
@@ -96,6 +109,7 @@ public class HashTable
             this.numElem ++;
         }
     }
+
     public Object get(Object key)
     {
         if (key == null)
@@ -121,5 +135,7 @@ public class HashTable
         }
         return null;
     }
+
+
 }
 

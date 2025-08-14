@@ -41,7 +41,28 @@ public class BinaryTree
         System.out.println(node.data + " ");
     }
 
+    private void printTreeI(Node node)
+    {
+        if(node == null){return;}
+        printTreeI(node.left);
+        System.out.println(node.data + " ");
+        printTreeI(node.right);
+    }
+    private void printTreePr(Node node)
+    {
+        if(node == null){return;}
+        System.out.println(node.data + " ");
+        printTreePr(node.left);
+        printTreePr(node.right);
+    }
 
+    private void printTreePo(Node node)
+    {
+        if(node == null){return;}
+        printTreePo(node.right);
+        printTreePo(node.left);
+        System.out.println(node.data + " ");
+    }
 
 
 
